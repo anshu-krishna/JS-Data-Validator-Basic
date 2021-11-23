@@ -56,7 +56,7 @@ const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/
 ```html
 <script type="module">
 	// Load the DataValidator module;
-	import {DataValidator as DV} from 'https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@latest/data-validator.min.js';
+	import {DataValidator as DV} from 'https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.1/data-validator.min.js';
 	
 	// This is expected structure
 	const structure = {

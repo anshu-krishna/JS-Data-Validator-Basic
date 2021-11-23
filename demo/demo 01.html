@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS-Data-Validator Basic Demo</title>
+	<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+	<script type="module">
+		import {addHeading, addItems} from './demo.js';
+		addHeading('Basic Demo');
+		addItems(/* This is the expected structure */ {
+			name: "string",					// Name is a string
+			id: "int|email",				// ID can be an int or email address
+			age: "int@num_range(18,45)",	// Age is an int. Age must be in range [18,45]
+			"?nums": ["int|float"],			// Nums is optional. Nums is an array contaning int and float items
+			
+			// Links is optional. Links is an array of 'item' arrays. 'item' has Title and Link property
+			"?links": [{
+				"title": "string",			// Title is a string
+				"link": "url",				// Link is a URL
+			}]
+		}, /* Following are the data to be validated */ {
+			name: "Test User1",
+			id: "12345",
+			age: '0b11001',
+			nums: [1, 2, 3, 4.5, 6.7, 8],
+			links: [{
+				title: "Link 1",
+				link: "http://site1.com/user/12345"
+			}, {
+				title: "Link 2",
+				link: "http://site2.com/user/12345"
+			}]
+		},
+		{
+			name: "Test User2",
+			id: "user2@site2.com",
+			age: "30", // Integer value in a string
+			// Optional nums not present
+			links: [{
+				title: "Link 1",
+				link: "http://site1.com/user/56789"
+			}]
+		}, {
+			// Data with many missing properties
+			id: 78912,
+			age: 70
+		}, {
+			name: true, // Bool insteadof a string
+			age: 80,
+			nums: [1, false, 20, 'hello']
+			// Optional links not present
+		});
+	</script>
+</body>
+</html>

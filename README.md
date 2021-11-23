@@ -34,7 +34,7 @@ const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/
 	* `unsigned` : Int >= 0
 	* `url` : String containing a URL
 
-* Custom data types can also be added. For example see `example files`
+* Custom data types can also be added. For example see `demo files`
 
 * Multiple alternative data types can be set for a data item. eg: `'int|float|null'`, `'email|null'`, etc.
 
@@ -46,9 +46,9 @@ const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/
 	* `str_title` : Works with any string data. Transforms the string to titlecase
 	* `to_str` : Works with any data. Transfroms the data to a string.
 
-* Custom ranger/formatter can also be added. For example see `example files`
+* Custom ranger/formatter can also be added. For example see `demo files`
 
-* Data-structure can be of nested style (Upto max recursion depth). For example see `example files`
+* Data-structure can be of nested style (Upto max recursion depth). For example see `demo files`
 
 ----
 
@@ -58,7 +58,7 @@ const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/
 	// Load the DataValidator module;
 	import {DataValidator as DV} from 'https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.1/data-validator.min.js';
 	
-	// This is expected structure
+	// This is the expected structure
 	const structure = {
 		name: "string",			// Name is a string
 		id: "int|email",		// ID can be an int or email address

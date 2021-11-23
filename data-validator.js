@@ -387,10 +387,18 @@ class ErrorManager {
 			}
 		}
 	}
+	static makePrefix(prefix) {
+		prefix = prefix ?? [];
+		if(!Array.isArray(prefix)) {
+			prefix = [prefix];
+		}
+		if(prefix.length === 0) {
+			return '';
+		}
+		return `${prefix.map(p=>`[${p}]`).join('')}: `;
+	}
 	get errorString() {
-		return this.errors?.map(e => (e.prefix.length === 0) ? `${e.msg}` : `${e.prefix.map(p => `[${p}]`).join('')}: ${e.msg}`).join('\n') ?? 'null';
-		// return this.errors?.join('\n') ?? 'null';
-		// return JSON.stringify(this.errors, null, 4);
+		return this.errors?.map(e => `${ErrorManager.makePrefix(e.prefix)}${e.msg}`).join('\n') ?? 'null';
 	}
 	__inheritErrors__(source, prefix = null) {
 		const errors = source.errors;
@@ -410,23 +418,6 @@ class ErrorManager {
 		source.errors = null;
 	}
 }
-// class Returner {
-// 	valid = false;
-// 	value = undefined; // Actual value or error message
-// 	constructor(valid, value) {
-// 		this.valid = valid;
-// 		this.value = value;
-// 	}
-// 	static setValid(value) {
-// 		return new Returner(true, value);
-// 	}
-// 	static setInvalid(errorMsg = '') {
-// 		return new Returner(false, errorMsg);
-// 	}
-// 	get error() {
-// 		return this.valid ? this.value : null;
-// 	}
-// }
 class DataValidator extends ErrorManager {
 	#handler = null;
 	constructor(struct) {
@@ -694,7 +685,7 @@ class TypeHandler extends ErrorManager {
 				break;
 			}
 		}
-		if(this.#rng_fmt !== null) {
+		if(valid && this.#rng_fmt !== null) {
 			for(let rf of this.#rng_fmt) {
 				[valid, val] = rf.exec(val);
 				if(!valid) {

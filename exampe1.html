@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Data-Validator Example</title>
+</head>
+<body>
+	<script type="module">
+		const DVMod = await import("./data-validator.js");
+		const jstr = v => JSON.stringify(v, null, 4);
+
+		let str = {
+			'?a' : 'int|null@num_range(10)@hex',
+			// b : {
+			// 	c: 'int',
+			// 	d: 'bool',
+			// 	e: 'null',
+			// 	f: ''
+			// }
+		};
+		let data = {a: '0b10'};
+
+		// str = ['int'];
+		// data = [1, '2', '0b11', '0x4', '0o5'];
+
+		str = {
+			a: 'int@num_range(5,15)',
+			'?b': ['string@str_lower@str_title'],
+			c: {
+				d: ['int', 'int']
+			},
+			'?d': 'any@to_str'
+		};
+		data = {
+			a: '0b1111',
+			c: {
+				d: [5, '45']
+			},
+			b: ['aBC', 'Ab Cd', 'A bC dE']
+		};
+
+		const dv = new DVMod.DataValidator(str);
+		console.log('Loading', dv, 'Load error\n', dv.errorString);
+		console.log('Data', jstr(data));
+		console.log('Validate Result', jstr(dv.validate(data)), 'Validate Error\n', dv.errorString);
+	</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+	"name": "anshu-krishna-data-validator",
+	"description": "A JS module for simplifying complexly-structured-data validation.",
+	"author": {
+		"name": "Anshu Krishna",
+		"email": "anshu.krishna5@gmail.com"
+	},
+	"license": "MIT",
+	"version": "1.0"
+}

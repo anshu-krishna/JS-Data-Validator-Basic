@@ -140,3 +140,53 @@ const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/
 	}
 </script>
 ```
+### Output:
+```
+Data matches the structure:
+{
+   "name":"Test User1",
+   "id":12345,
+   "age":25,
+   "nums":[
+      1,
+      2,
+      3,
+      4.5,
+      6.7,
+      8
+   ],
+   "links":[
+      {
+         "title":"Link 1",
+         "link":"http://site1.com/user/12345"
+      },
+      {
+         "title":"Link 2",
+         "link":"http://site2.com/user/12345"
+      }
+   ]
+}
+
+Data matches the structure:
+{
+   "name":"Test User2",
+   "id":"user2@site2.com",
+   "age":30,
+   "links":[
+      {
+         "title":"Link 1",
+         "link":"http://site1.com/user/56789"
+      }
+   ]
+}
+
+
+Data doesnot match the structure:
+[name]: Missing
+[age]: Expected range [18, 45]
+
+Data doesnot match the structure:
+[id]: Missing
+[age]: Expected range [18, 45]
+[nums][3]: Expected type: int|float; Received: "hello"
+```

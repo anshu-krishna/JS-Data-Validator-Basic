@@ -9,11 +9,11 @@ A JS module for simplifying complexly-structured-data validation.
 ## Installation:
 
 ```javascript
-import {DataValidator} from 'https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.1/data-validator.min.js';
+import {DataValidator} from 'https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.2/data-validator.min.js';
 
 // OR
 
-const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.1/data-validator.min.js');
+const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.2/data-validator.min.js');
 ```
 
 ----
@@ -56,7 +56,7 @@ const {DataValidator} = await import('https://cdn.jsdelivr.net/gh/anshu-krishna/
 ```html
 <script type="module">
 	// Load the DataValidator module;
-	import {DataValidator as DV} from 'https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.1/data-validator.min.js';
+	import {DataValidator as DV} from 'https://cdn.jsdelivr.net/gh/anshu-krishna/JS-Data-Validator@1.2/data-validator.min.js';
 	
 	// This is the expected structure
 	const structure = {
@@ -179,7 +179,6 @@ Data matches the structure:
       }
    ]
 }
-
 
 Data doesnot match the structure:
 [name]: Missing

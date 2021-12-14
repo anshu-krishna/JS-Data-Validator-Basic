@@ -5,6 +5,7 @@ const logErrorTrace = (...data) => {
 };
 const isObject = v => typeof v === 'object' && v !== null && !Array.isArray(v);
 class TypeStore {
+	/* ncp = Null Check is Post = Null Check to be done Post checking current types */
 	static #store = {
 		'null': {
 			ncp: true,
@@ -20,7 +21,7 @@ class TypeStore {
 			}
 		},
 		'any': {
-			ncp: true,
+			ncp: false,
 			handler: function (value) {
 				return [true, value];
 			}
@@ -108,6 +109,29 @@ class TypeStore {
 			handler: function(value) {
 				[,value] = TypeStore.check('string', value);
 				return /^[0-9a-f]+$/i.test(value) ? [true, Number(value).valueOf()] : [false];
+			}
+		},
+		'object': {
+			ncp: false,
+			handler: function(value) {
+				switch(typeof value) {
+					case 'object':
+						if(value !== null) {
+							return [true, value];
+						}
+						break;
+					default:
+						try {
+							value = JSON.parse(String(value));
+							if(typeof value === 'object' && value !== null) {
+								return [true, value];
+							}
+						} catch (error) {
+							return [false];
+						}
+						break;
+				}
+				return [false];
 			}
 		},
 		'timestamp': {
